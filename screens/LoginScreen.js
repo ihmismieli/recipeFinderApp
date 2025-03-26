@@ -20,9 +20,10 @@ export default function LoginScreen() {
     const signIn = async () => {
         setLoading(true);
         try {
-            const response = await signInWithEmailAndPassword(auth, email, password);
-            console.log(response);
-            Alert.alert('Please, check your email!');
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            console.log(user);
+            Alert.alert('Successfully logged in!');
         } catch (error) {
             console.log(error);
             Alert.alert('Sign in failed: ', error.message)
@@ -34,8 +35,9 @@ export default function LoginScreen() {
     const signUp = async () => {
         setLoading(true);
         try {
-            const response = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(response);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+        console.log(user); 
             // <Portal>
             //     <Dialog visible={visible} onDismiss={hideDialog}>
             //         <Dialog.Title>Alert</Dialog.Title>
@@ -77,7 +79,7 @@ export default function LoginScreen() {
                     secureTextEntry
                     right={<TextInput.Icon icon="eye" />}
                 />
-                {loading ? ( <ActivityIndicator animating={true} size='large' />
+                {loading ? (<ActivityIndicator animating={true} size='large' />
                 ) : (
                     <>
                         <Button onPress={signIn} mode='contained-tonal'>Login</Button>
