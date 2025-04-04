@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { PaperProvider, BottomNavigation, Title } from 'react-native-paper';
 import HomeScreen from '../../screens/HomeScreen';
-import ListScreen from '../../screens/ListScreen';
+import ListScreen from '../../screens/FavoritesScreen';
+import SettingsScreen from '../../screens/SettingsScreen';
 
 const HomeRoute = () => <HomeScreen />;
 
-const ListRoute = () => <ListScreen />;
+const FavoriteRoute = () => <ListScreen />;
+
+const SettingsRoute = () => <SettingsScreen />;
 
 export default function TabNavigation() {
 
@@ -13,16 +16,19 @@ export default function TabNavigation() {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         {
-            key: 'home', title: 'Home', focusedIcon: 'heart', unfocusedIcon: 'heart-outline'
+            key: 'home', title: 'Home', focusedIcon: 'emoticon-happy', unfocusedIcon: 'emoticon-happy-outline'
         }, {
-            key: 'list', title: 'List'
+            key: 'favorite', title: 'Faves', focusedIcon: 'cards-heart', unfocusedIcon: 'cards-heart-outline'
+        }, {
+            key: 'settings', title: 'Settings', focusedIcon: 'account-circle', unfocusedIcon: 'account-circle-outline'
         }
 
     ]);
 
     const renderScene = BottomNavigation.SceneMap({
         home: HomeRoute,
-        list: ListRoute,
+        list: FavoriteRoute,
+        settings: SettingsRoute,
     });
 
     return (

@@ -1,22 +1,24 @@
+// Login and signup of the application
+// Auth docs: https://firebase.google.com/docs/auth/web/password-auth#web_4
+
+
 import React, { use, useState } from 'react'
 import { View, StyleSheet, Alert } from 'react-native'
 import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button } from 'react-native-paper'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,signInWithRedirect } from 'firebase/auth';
 
 export default function LoginScreen() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
     const auth = FIREBASE_AUTH;
 
-    const showDialog = () => setVisible(true);
 
-    const hideDialog = () => setVisible(false);
 
+    //signing in to the application
     const signIn = async () => {
         setLoading(true);
         try {
@@ -32,24 +34,14 @@ export default function LoginScreen() {
         }
     }
 
+    //signing up to the application
     const signUp = async () => {
         setLoading(true);
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-        console.log(user); 
-            // <Portal>
-            //     <Dialog visible={visible} onDismiss={hideDialog}>
-            //         <Dialog.Title>Alert</Dialog.Title>
-            //         <Dialog.Content>
-            //             <Text variant='bodyMedium'>Check your password!</Text>
-            //         </Dialog.Content>
-            //         <Dialog.Actions>
-            //             <Button onPress={hideDialog}>Done</Button>
-            //         </Dialog.Actions>
-            //     </Dialog>
-            // </Portal>
-            Alert.alert('Please, check your email!')
+            console.log(user);
+            Alert.alert('Account created succesfully!!')
         } catch (error) {
             console.log(error);
             Alert.alert('Sign up failed: ', error.message)
