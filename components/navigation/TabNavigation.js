@@ -16,7 +16,7 @@ export default function TabNavigation() {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         {
-            key: 'home', title: 'Home', focusedIcon: 'emoticon-happy', unfocusedIcon: 'emoticon-happy-outline'
+            key: 'home', title: 'Tasties', focusedIcon: 'emoticon-happy', unfocusedIcon: 'emoticon-happy-outline'
         }, {
             key: 'favorite', title: 'Faves', focusedIcon: 'cards-heart', unfocusedIcon: 'cards-heart-outline'
         }, {

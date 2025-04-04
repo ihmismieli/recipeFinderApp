@@ -2,18 +2,24 @@
 // Auth docs: https://firebase.google.com/docs/auth/web/password-auth#web_4
 
 
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Alert } from 'react-native'
-import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button } from 'react-native-paper'
+import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button, Snackbar } from 'react-native-paper'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,signInWithRedirect } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 
 export default function LoginScreen() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const [dialogText, setDialogText] = useState('');
+    const [dialogTitle, setDialogTitle] = useState('');
+
+    const hideDialog = () => setVisible(false);
+
     const auth = FIREBASE_AUTH;
 
 
@@ -28,8 +34,10 @@ export default function LoginScreen() {
             Alert.alert('Successfully logged in!');
         } catch (error) {
             console.log(error);
-            Alert.alert('Sign in failed: ', error.message)
+            setDialogTitle('Ohh no!')
+            setDialogText(`Sign in failed: ${error.message} `)
         } finally {
+            setVisible(true);
             setLoading(false);
         }
     }
@@ -79,7 +87,20 @@ export default function LoginScreen() {
                     </>
                 )}
             </View>
+            <Portal>
+                <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
+                    <Dialog.Icon icon="alert" />
+                    <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
+                    <Dialog.Content>
+                        <Text variant="bodyMedium">{dialogText}</Text>
+                    </Dialog.Content>
+                    <Dialog.Actions >
+                        <Button onPress={hideDialog}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
         </SafeAreaView >
+        
     )
 }
 
@@ -99,5 +120,9 @@ const styles = StyleSheet.create({
     inputView: {
         width: '80%',
         marginTop: 20,
-    }
+    },
+    title: {
+        textAlign: 'center',
+        alignItems: 'center'
+    },
 });

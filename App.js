@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import { PaperProvider, BottomNavigation } from 'react-native-paper';
-import HomeScreen from './screens/HomeScreen';
-import ListScreen from './screens/FavoritesScreen';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth'
 import { FIREBASE_AUTH } from './FirebaseConfig';
