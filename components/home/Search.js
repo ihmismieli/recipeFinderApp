@@ -1,45 +1,70 @@
 /* For searching meals by given query in HomeScreen*/
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Keyboard, StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper'
-import { searchMealByName } from '../../Api';
+import { searchMealsByName } from '../../Api';
 import ListMeals from './ListMeals';
-import HomeScreen from '../../screens/HomeScreen';
+import { searchMealsByCategory } from '../../Api';
 
-export default function Search() {
+export default function Search({category}) {
 
     const [searchQuery, setSearchQuery] = useState("");
     const [foundMeals, setFoundMeals] = useState([{}])
+    const [showMeals, setShowMeals] = useState(false);
+
+    useEffect(() => {
+        if (category) {
+          handleCategorySearch(category); 
+        } else {
+            handleSearch(searchQuery)
+        }
+      }, [category]);
 
     const handleSearch = async () => {
         try {
-            const data = await searchMealByName(searchQuery);
+            const data = await searchMealsByName(searchQuery);
             console.log("DATA:", data.meals);
             setFoundMeals(data.meals);
+            setShowMeals(true);
+            // setSearchQuery("");
             Keyboard.dismiss();
         } catch (error) {
             console.error("Error in fetching meals: ", error)
         }
     }
 
+    const handleCategorySearch = async (category) => {
+        try {
+          const data = await searchMealsByCategory(category);  // Hae ateriat valitun kategorian mukaan
+          setFoundMeals(data.meals);  // Tallenna ateriat tilaan
+          setShowMeals(true);  // Näytä ateriat
+        } catch (error) {
+          console.error('Error in fetching meals:', error);
+        }
+      };
+
+
     return (
         <>
-        <Searchbar
-            style={styles.search}
-            placeholder="Search recipes"
-            onChangeText={setSearchQuery}
-            value={searchQuery}
-            onIconPress={handleSearch}
-        />
-        <ListMeals foundMeals={foundMeals} />
+            <Searchbar
+                style={styles.search}
+                placeholder="Search recipes"
+                onChangeText={setSearchQuery}
+                value={searchQuery}
+                onIconPress={handleSearch}
+            />
+            {
+                showMeals &&
+                <ListMeals foundMeals={foundMeals} />
+            }
         </>
     )
 }
 
 const styles = StyleSheet.create({
     search: {
-        width: '80%',
+        width: '90%',
         alignSelf: 'center'
     }
 })
