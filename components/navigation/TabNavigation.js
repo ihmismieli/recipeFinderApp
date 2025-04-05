@@ -3,7 +3,7 @@ import { PaperProvider, BottomNavigation, Title } from 'react-native-paper';
 import HomeScreen from '../../screens/HomeScreen';
 import ListScreen from '../../screens/FavoritesScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
-import RecipesScreen from '../../screens/RecipesScreen';
+import RecipesScreen from '../../screens/RecipeScreen';
 
 const HomeRoute = () => <HomeScreen />;
 
@@ -11,7 +11,7 @@ const FavoriteRoute = () => <ListScreen />;
 
 const SettingsRoute = () => <SettingsScreen />;
 
-const RecipeRoute = () => <RecipesScreen />;
+const RecipeRoute = () => <RecipeScreen />;
 
 export default function TabNavigation() {
 
@@ -22,7 +22,7 @@ export default function TabNavigation() {
             key: 'home', title: 'Tasties', focusedIcon: 'emoticon-happy', unfocusedIcon: 'emoticon-happy-outline'
         },
         {
-            key: 'recipe', title: 'Recipes', focusedIcon: 'bowl-mix', unfocusedIcon: 'bowl-mix-outline'
+            key: 'recipe', title: 'Recipe', focusedIcon: 'bowl-mix', unfocusedIcon: 'bowl-mix-outline'
         },
         {
             key: 'favorite', title: 'Faves', focusedIcon: 'cards-heart', unfocusedIcon: 'cards-heart-outline'

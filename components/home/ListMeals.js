@@ -21,7 +21,7 @@ export default function ListMeals({ foundMeals }) {
             renderItem={({ item }) =>
                 <Card 
                 style={styles.cards}
-                onPress={() => navigation.navigate('recipe', {mealId: item.idMeal})}
+                onPress={() => navigation.navigate('Recipe', { mealId: item.idMeal })}
                 >
                     <Card.Title title={item.strMeal} />
                     <Card.Cover source={{ uri: item.strMealThumb }} />
