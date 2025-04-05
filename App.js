@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabNavigation from './components/navigation/TabNavigation';
 import NavigationTab from './components/navigation/NavigationTab';
 import TabNavigationPaper from './components/navigation/TabNavigation';
+import RecipeScreen from './screens/RecipeScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -30,7 +31,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Login'>
           { user ? (
+            <>
             <Stack.Screen name='Inside' component={TabNavigation} options={{ headerShown: false }} />
+            <Stack.Screen name='Recipe' component={RecipeScreen} options={{ headerShown: false }} />
+            </>
           ) : (
           <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
           )}
