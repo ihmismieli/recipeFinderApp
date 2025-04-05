@@ -1,29 +1,33 @@
 /*Home page of the application (Tasties tab)*/
 
-
-import { Alert, View, StyleSheet, ScrollView } from 'react-native'
-import { Text, IconButton, Searchbar, Surface } from 'react-native-paper'
+import { useState } from 'react'
+import { View, StyleSheet, ScrollView } from 'react-native'
+import { Text } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Categories from '../components/home/Categories'
 import Search from '../components/home/Search'
-import ListMeals from '../components/home/ListMeals'
 
 
 export default function HomeScreen() {
 
+  const [category, setCategory] = useState(''); 
+
+  const handleCategoryPress = (category) => {
+    setCategory(category); 
+  };
 
   return (
     <SafeAreaView styles={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text variant="headlineSmall">Hi Gourmie!</Text>
-        <Categories />
-        <Search />
-        <ListMeals />
+        <View style={styles.text}>
+          <Text variant="headlineSmall">Hi Gourmie!</Text>
+        </View>
+        <Categories handleCategoryPress={handleCategoryPress} />
+        <Search category={category}/>
       </ScrollView>
     </SafeAreaView>
   )
 }
-
 
 const styles = StyleSheet.create({
   container: {
