@@ -60,7 +60,7 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text variant='displayLarge'>Delli Recipies </Text>
+            <Text variant='displayLarge'>Delli Recipes </Text>
             <Text variant='headlineLarge'>Login</Text>
             <View style={styles.inputView}>
                 <TextInput
@@ -81,10 +81,10 @@ export default function LoginScreen() {
                 />
                 {loading ? (<ActivityIndicator animating={true} size='large' />
                 ) : (
-                    <>
-                        <Button onPress={signIn} mode='contained-tonal'>Login</Button>
-                        <Button onPress={signUp} mode='elevated'>Create accout</Button>
-                    </>
+                    <View style={styles.buttons}>
+                        <Button style={styles.button} onPress={signIn} mode='contained-tonal'>Login</Button>
+                        <Button style={styles.button} onPress={signUp} mode='elevated'>Create accout</Button>
+                    </View>
                 )}
             </View>
             <Portal>
@@ -100,12 +100,18 @@ export default function LoginScreen() {
                 </Dialog>
             </Portal>
         </SafeAreaView >
-        
+
     )
 }
 
 
 const styles = StyleSheet.create({
+    buttons: {
+        marginTop: 45,
+    },
+    button: {
+        marginVertical: 8,
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -113,7 +119,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     input: {
-        marginVertical: 4,
+        marginVertical: 6,
         height: 50,
         borderRadius: 10,
     },
@@ -125,4 +131,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center'
     },
+
 });
