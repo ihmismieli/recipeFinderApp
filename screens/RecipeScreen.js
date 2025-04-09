@@ -53,13 +53,12 @@ export default function RecipesScreen({ route }) {
 
   return (
     <ScrollView>
-      <SafeAreaView style={styles.container}>
 
         <View style={styles.recipe}>
 
           <Surface style={styles.surface} elevation={4}>
-            <Text variant='displayMedium' style={styles.textSurface}>{meal.strMeal}</Text>
-            <Text variant='bodyMedium'>{meal.strArea}</Text>
+            <Text variant='displaySmall' style={styles.textSurface}>{meal.strMeal}</Text>
+            <Text variant='bodyLarge'>{meal.strArea}</Text>
           </Surface>
 
           <View style={styles.youtubePlayer}>
@@ -96,7 +95,6 @@ export default function RecipesScreen({ route }) {
           </Button>
 
         </View>
-      </SafeAreaView>
     </ScrollView>
   )
 }
@@ -130,10 +128,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   surface: {
+    marginTop: 20,
     paddingVertical: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
+    textAlign: 'center'
   },
   text: {
     marginVertical: 10,
