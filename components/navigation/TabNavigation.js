@@ -1,17 +1,21 @@
+/* Tab navigation of the application */
+/* Docs: https://callstack.github.io/react-native-paper/docs/components/BottomNavigation/BottomNavigationBar*/
+
 import React, { useState } from 'react'
 import { PaperProvider, BottomNavigation, Title } from 'react-native-paper';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../screens/HomeScreen';
-import ListScreen from '../../screens/FavoritesScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
-import RecipesScreen from '../../screens/RecipeScreen';
+import FavoritesScreen from '../../screens/FavoritesScreen';
+
+const Tab = createBottomTabNavigator();
 
 const HomeRoute = () => <HomeScreen />;
 
-const FavoriteRoute = () => <ListScreen />;
+const FavoriteRoute = () => <FavoritesScreen />;
 
 const SettingsRoute = () => <SettingsScreen />;
 
-const RecipeRoute = () => <RecipeScreen />;
 
 export default function TabNavigation() {
 
@@ -19,10 +23,7 @@ export default function TabNavigation() {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         {
-            key: 'home', title: 'Tasties', focusedIcon: 'emoticon-happy', unfocusedIcon: 'emoticon-happy-outline'
-        },
-        {
-            key: 'recipe', title: 'Recipe', focusedIcon: 'bowl-mix', unfocusedIcon: 'bowl-mix-outline'
+            key: 'home', title: 'Recipes', focusedIcon: 'bowl-mix', unfocusedIcon: 'bowl-mix-outline'
         },
         {
             key: 'favorite', title: 'Faves', focusedIcon: 'cards-heart', unfocusedIcon: 'cards-heart-outline'
@@ -35,9 +36,8 @@ export default function TabNavigation() {
 
     const renderScene = BottomNavigation.SceneMap({
         home: HomeRoute,
-        list: FavoriteRoute,
+        favorite: FavoriteRoute,
         settings: SettingsRoute,
-        recipe : RecipeRoute,
     });
 
     return (
