@@ -5,28 +5,24 @@
 
 import { openURL } from 'expo-linking';
 import React, { useState } from 'react'
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Image, View, ScrollView } from 'react-native'
-import { Button, Checkbox, Text } from 'react-native-paper'
+import { StyleSheet, View, ScrollView } from 'react-native'
+import { Button, Checkbox, Text, Card, Surface } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import YoutubePlayer from "react-native-youtube-iframe";
-import Youtube from '../components/recipe/Youtube';
 
 
 export default function RecipesScreen({ route }) {
-  
+
 
   const { meal } = route.params;
-
-  const navigation = useNavigation(); 
 
   const [checkedIngredients, setCheckedIngredients] = useState({});
 
   //Created with the help of ChatGPT
   const checked = (index) => {
     setCheckedIngredients({
-    ...checkedIngredients,
-    [index] : !checkedIngredients[index],
+      ...checkedIngredients,
+      [index]: !checkedIngredients[index],
     });
   };
 
@@ -40,6 +36,7 @@ export default function RecipesScreen({ route }) {
       if (ingredient) {
         ingredientsWithMeasures.push(
           <View key={i} style={styles.ingredient}>
+
             <Checkbox
               status={checkedIngredients[i] ? 'checked' : 'unchecked'}
               onPress={() => checked(i)}
@@ -57,25 +54,47 @@ export default function RecipesScreen({ route }) {
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-      <YoutubePlayer
-            height={250}
-            play={false}  
-            videoId={meal.strYoutube.split('v=')[1]} 
-          />
+
         <View style={styles.recipe}>
-          <Text variant='headlineMedium'>{meal.strMeal}</Text>
-          <Text variant='bodyMedium'>{meal.strArea}</Text>
-          <Text variant='headlineSmall'>Ingredients</Text>
-          <View style={styles.ingredients}>
-            {getIngredients(meal)}
+
+          <Surface style={styles.surface} elevation={4}>
+            <Text variant='displayMedium' style={styles.textSurface}>{meal.strMeal}</Text>
+            <Text variant='bodyMedium'>{meal.strArea}</Text>
+          </Surface>
+
+          <View style={styles.youtubePlayer}>
+            <YoutubePlayer
+              height={200}
+              play={false}
+              videoId={meal.strYoutube.split('v=')[1]}
+            />
           </View>
-          <Text>{meal.strInstructions}</Text>
-          <Button 
-          mode='elevated'
-          onPress={() => openURL(meal.strSource)}
+
+          <View style={styles.ingredients}>
+
+            <Card>
+              <Card.Content>
+                <Text variant='headlineSmall' style={styles.text}>Ingredients</Text>
+                {getIngredients(meal)}
+              </Card.Content>
+            </Card>
+
+          </View>
+
+          <Card style={styles.card}>
+            <Card.Content>
+              <Text variant='bodyMedium'>{meal.strInstructions}</Text>
+            </Card.Content>
+          </Card>
+
+          <Button
+            style={styles.button}
+            mode='elevated'
+            onPress={() => openURL(meal.strSource)}
           >
-           Original Recipe
+            Original Recipe
           </Button>
+
         </View>
       </SafeAreaView>
     </ScrollView>
@@ -84,8 +103,14 @@ export default function RecipesScreen({ route }) {
 
 
 const styles = StyleSheet.create({
+  button: {
+    marginBottom: 20,
+  },
+  card: {
+    marginVertical: 20,
+  },
   container: {
-    flex: 1,
+    // flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center'
   },
@@ -95,13 +120,25 @@ const styles = StyleSheet.create({
   },
   ingredient: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   ingredients: {
-    margin: 10,
+    marginVertical: 10,
     justifyContent: 'center',
   },
   recipe: {
-    padding: 20,
+    paddingHorizontal: 20,
+  },
+  surface: {
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+  },
+  text: {
+    marginVertical: 10,
+  },
+  youtubePlayer: {
+    marginTop: 20,
   }
 })
