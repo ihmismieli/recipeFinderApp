@@ -1,4 +1,4 @@
-/*Home page of the application (Tasties tab)*/
+/*Home page of the application (Recipes tab)*/
 
 import { useState } from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
