@@ -9,8 +9,6 @@ import { onAuthStateChanged, User } from 'firebase/auth'
 import { FIREBASE_AUTH } from './FirebaseConfig';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabNavigation from './components/navigation/TabNavigation';
-import NavigationTab from './components/navigation/NavigationTab';
-import TabNavigationPaper from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 const Stack = createNativeStackNavigator();
 
