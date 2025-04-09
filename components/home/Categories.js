@@ -42,13 +42,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     card: {
-        width: 90,
-        height: 90,
+        width: 100,
+        height: 100,
         marginHorizontal: 10,
-        alignContent: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
-        borderRadius: 30,
+        borderRadius: 50,
     },
     cardContent: {
         justifyContent: 'center',
@@ -56,8 +55,6 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
-        marginTop: 3,
-        paddingBottom: 10,
     }
 
 });

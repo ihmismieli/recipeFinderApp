@@ -7,7 +7,7 @@ export default  function Recipe() {
     <View>
         <Text>Recipe</Text>
     </View>
+
+    
   )
 }
-
-

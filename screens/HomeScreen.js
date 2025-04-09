@@ -1,4 +1,4 @@
-/*Home page of the application (Tasties tab)*/
+/*Home page of the application (Recipes tab)*/
 
 import { useState } from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
@@ -29,7 +29,6 @@ export default function HomeScreen() {
   )
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -41,10 +40,9 @@ const styles = StyleSheet.create({
   scrollView: {
     width: '100%',
     height: '100%'
-  },
+  }, 
   text: {
-    alignItems:'flex-start',
-    marginTop:15,
-    marginLeft:20,
-  }
+    paddingLeft:20,
+    marginTop:20,
+  },
 });

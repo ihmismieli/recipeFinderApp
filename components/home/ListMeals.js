@@ -1,6 +1,6 @@
 /* For listing found meals from the HomeScreen's search */
 /* Docs: https://reactnative.dev/docs/flatlist
-        https://callstack.github.io/react-native-paper/docs/components/Card/
+         https://callstack.github.io/react-native-paper/docs/components/Card/
 */
 
 import { useNavigation } from '@react-navigation/native';
@@ -21,7 +21,7 @@ export default function ListMeals({ foundMeals }) {
             renderItem={({ item }) =>
                 <Card 
                 style={styles.cards}
-                onPress={() => navigation.navigate('recipe', {mealId: item.idMeal})}
+                onPress={() => navigation.navigate('Recipe', { meal: item })}
                 >
                     <Card.Title title={item.strMeal} />
                     <Card.Cover source={{ uri: item.strMealThumb }} />

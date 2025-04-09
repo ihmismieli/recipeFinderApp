@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, IconButton } from 'react-native-paper'
+import { Text, IconButton, Button } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { signOut, getAuth } from 'firebase/auth'
 
@@ -15,14 +15,16 @@ export default function SettingsScreen() {
             Alert.alert("Something unexpected happened!")
         }
     }
-  return (
-    <SafeAreaView>
-        <Text>Settings</Text>
-        <IconButton
-                icon='logout'
+    return (
+        <SafeAreaView>
+            <Button
+            mode='contained-tonal'
+                icon="logout"
                 onPress={handleSignOut}
-            />
-    </SafeAreaView>
-  )
+            >
+                Sign out
+            </Button>
+        </SafeAreaView>
+    )
 }
 

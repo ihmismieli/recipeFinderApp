@@ -10,6 +10,7 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
           { user ? (
             <>
             <Stack.Screen name='Inside' component={TabNavigation} options={{ headerShown: false }} />
-            <Stack.Screen name='Recipe' component={RecipeScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Recipe" component={RecipeScreen} options={{ title: 'Recipe Details' }} />
             </>
           ) : (
           <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
