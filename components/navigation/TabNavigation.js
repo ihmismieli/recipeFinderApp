@@ -52,7 +52,10 @@ export default function TabNavigation() {
                 options={{
                     tabBarLabel: 'Recipes',
                     tabBarIcon: ({ focused, size }) => {
-                        return <Icon name={focused ? 'bowl-mix' : 'bowl-mix-outline'} size={size} />
+                        return <Icon
+                            name={focused ? 'bowl-mix' : 'bowl-mix-outline'}
+                            size={size}
+                        />
                     }
                 }}
             />
@@ -62,7 +65,10 @@ export default function TabNavigation() {
                 options={{
                     tabBarLabel: 'Faves',
                     tabBarIcon: ({ focused, size }) => {
-                        return <Icon name={focused ? 'cards-heart' : 'cards-heart-outline'} size={size} />
+                        return <Icon
+                            name={focused ? 'cards-heart' : 'cards-heart-outline'}
+                            size={size}
+                        />
                     }
                 }}
             />
@@ -72,7 +78,10 @@ export default function TabNavigation() {
                 options={{
                     tabBarLabel: 'Settings',
                     tabBarIcon: ({ focused, size }) => {
-                        return <Icon name={focused ? 'account-circle' : 'account-circle-outline'} size={size} />
+                        return <Icon
+                            name={focused ? 'account-circle' : 'account-circle-outline'}
+                            size={size}
+                        />
                     }
                 }}
             />

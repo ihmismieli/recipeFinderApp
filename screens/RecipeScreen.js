@@ -1,4 +1,4 @@
-/* Screen that opens to a Stack Screen. Includes the details of a recipe*/
+/* Stack Screen which includes the details of a recipe*/
 /* Docs: https://docs.expo.dev/versions/latest/sdk/linking/
         https://lonelycpp.github.io/react-native-youtube-iframe/install
 */

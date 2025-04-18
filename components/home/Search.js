@@ -24,7 +24,7 @@ export default function Search({category}) {
     const handleSearch = async () => {
         try {
             const data = await searchMealsByName(searchQuery);
-            console.log("DATA:", data.meals);
+            // console.log("DATA:", data.meals);
             setFoundMeals(data.meals);
             setShowMeals(true);
             // setSearchQuery("");
@@ -36,9 +36,9 @@ export default function Search({category}) {
 
     const handleCategorySearch = async (category) => {
         try {
-          const data = await searchMealsByCategory(category);  // Hae ateriat valitun kategorian mukaan
-          setFoundMeals(data.meals);  // Tallenna ateriat tilaan
-          setShowMeals(true);  // Näytä ateriat
+          const data = await searchMealsByCategory(category);  
+          setFoundMeals(data.meals); 
+          setShowMeals(true);  
         } catch (error) {
           console.error('Error in fetching meals:', error);
         }
@@ -53,6 +53,7 @@ export default function Search({category}) {
                 onChangeText={setSearchQuery}
                 value={searchQuery}
                 onIconPress={handleSearch}
+                onSubmitEditing={handleSearch}
             />
             {
                 showMeals &&
