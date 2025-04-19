@@ -6,9 +6,12 @@ import { Text } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Categories from '../components/home/Categories'
 import Search from '../components/home/Search'
+import DialogShake from '../components/home/DialogShake'
+
 
 
 export default function HomeScreen() {
+
 
   const [category, setCategory] = useState(''); 
 
@@ -17,10 +20,12 @@ export default function HomeScreen() {
   };
 
   return (
+
     <SafeAreaView styles={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.text}>
           <Text variant="headlineSmall">Hi Gourmie!</Text>
+          <DialogShake />
         </View>
         <Categories handleCategoryPress={handleCategoryPress} />
         <Search category={category}/>
@@ -43,6 +48,10 @@ const styles = StyleSheet.create({
   }, 
   text: {
     paddingLeft:20,
+    paddingRight: 20,
     marginTop:20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
 });

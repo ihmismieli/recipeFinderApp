@@ -5,7 +5,7 @@
 import { IconButton } from 'react-native-paper'
 import { useFavorites } from '../../context/FavoritesContext';
 
-export default function FavoriteIconButton({ recipe }) {
+export default function FavoriteIconButton({ recipe, style }) {
 
     const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
@@ -22,6 +22,7 @@ export default function FavoriteIconButton({ recipe }) {
             icon={isFavorite(recipe.idMeal) ?"heart" : "heart-outline"}
             iconColor={isFavorite(recipe.idMeal) ? "red" : undefined}
             onPress={handleFavoritePress}
+            style={style}
         />
     )
 }

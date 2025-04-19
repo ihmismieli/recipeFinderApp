@@ -1,13 +1,14 @@
 import React from 'react'
-import { View } from 'react-native'
-import { Text } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FavoriteList from '../components/favorite/FavoriteList'
+import { ScrollView } from 'react-native'
 
-export default function ListScreen() {
+export default function FavoriteScreen() {
   return (
     <SafeAreaView>
+      <ScrollView>
         <FavoriteList />
+      </ScrollView>
     </SafeAreaView>
   )
 }

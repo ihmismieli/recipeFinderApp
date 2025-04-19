@@ -10,6 +10,7 @@ export async function searchMealsByName(searchQuery){
     }
     return await response.json();
 }
+
 //search meal by category
 export async function searchMealsByCategory(category){
     const response = await fetch(`${mealDbUrl}search.php?s=${category}`);
