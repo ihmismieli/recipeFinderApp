@@ -8,6 +8,7 @@ import { onAuthStateChanged, User } from 'firebase/auth'
 import { FIREBASE_AUTH } from './FirebaseConfig';
 import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ export default function App() {
 
   const [user, setUser] = useState(null);
 
-  useEffect (() => {
+  useEffect(() => {
     onAuthStateChanged(FIREBASE_AUTH, (user) => {
       console.log('user', user);
       setUser(user);
@@ -24,20 +25,22 @@ export default function App() {
 
 
   return (
-    <PaperProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Login'>
-          { user ? (
-            <>
-            <Stack.Screen name='Inside' component={TabNavigation} options={{ headerShown: false }} />
-            <Stack.Screen name="Recipe" component={RecipeScreen} options={{ title: 'Recipe Details' }} />
-            </>
-          ) : (
-          <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </PaperProvider>
+    <FavoritesProvider>
+      <PaperProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            {user ? (
+              <>
+                <Stack.Screen name='Inside' component={TabNavigation} options={{ headerShown: false }} />
+                <Stack.Screen name="Recipe" component={RecipeScreen} options={{ title: 'Recipe Details' }} />
+              </>
+            ) : (
+              <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </FavoritesProvider>
   );
 }
 

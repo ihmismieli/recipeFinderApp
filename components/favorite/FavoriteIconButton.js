@@ -2,56 +2,26 @@
 /* Docs: https://firebase.google.com/docs/database/web/start
 */
 
-import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, IconButton } from 'react-native-paper'
-import { FIREBASE_DB } from "../../FirebaseConfig"
-import { ref, set, remove, get} from 'firebase/database'
-import { getAuth } from "firebase/auth";
+import { IconButton } from 'react-native-paper'
+import { useFavorites } from '../../context/FavoritesContext';
 
-export default function FavoriteIconButton({ recipe, onFavoriteChange }) {
+export default function FavoriteIconButton({ recipe }) {
 
-    const  [isFavorite, setIsFavorite] = useState(false);
-
-    const auth = getAuth();
-    const userId = auth.currentUser.uid;
-
-    const recipeRef = ref(FIREBASE_DB, `favorites/${userId}/${recipe.idMeal}`)
-
-    const addFavorite = async() => {
-       await set(recipeRef, recipe)
-       setIsFavorite(true);
-       onFavoriteChange();
-    }
-
-    const removeFavorite = async() => {
-        await remove(recipeRef)
-        setIsFavorite(false);
-        onFavoriteChange();
-    }
+    const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
     const handleFavoritePress = () => {
-        if(isFavorite){
-            removeFavorite();
+        if (isFavorite(recipe.idMeal)){
+            removeFavorite(recipe.idMeal);
         } else {
-            addFavorite();
+            addFavorite(recipe);
         }
-    }
-
-    const checkIsFavorite = async () => {
-        const snapshot = await get(recipeRef);
-        setIsFavorite(snapshot.exists());
-    }
-
-    useEffect(() => {
-        checkIsFavorite();
-    }, [recipe.idMeal]);
+    };
 
     return (
         <IconButton
-            icon={isFavorite ?"heart" : "heart-outline"}
-            iconColor={isFavorite ? "red" : undefined}
+            icon={isFavorite(recipe.idMeal) ?"heart" : "heart-outline"}
+            iconColor={isFavorite(recipe.idMeal) ? "red" : undefined}
             onPress={handleFavoritePress}
-
         />
     )
 }

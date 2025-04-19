@@ -1,11 +1,9 @@
-import { useState } from 'react'
-import { StyleSheet, View, Keyboard, ScrollView } from 'react-native';
-import { Surface, Text, Avatar, Card } from 'react-native-paper';
-import { searchMealsByCategory } from '../../Api';
-import ListMeals from './ListMeals';
+/* Category buttons on the HomeScreen */
+
+import { StyleSheet, View } from 'react-native';
+import { Text, Avatar, Card } from 'react-native-paper';
 
 export default function Categories({ handleCategoryPress }) {
-
 
     return (
         <View>
