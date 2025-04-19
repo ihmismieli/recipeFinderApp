@@ -22,8 +22,6 @@ export default function LoginScreen() {
 
     const auth = FIREBASE_AUTH;
 
-
-
     //signing in to the application
     const signIn = async () => {
         setLoading(true);
@@ -79,15 +77,20 @@ export default function LoginScreen() {
                     secureTextEntry
                     right={<TextInput.Icon icon="eye" />}
                 />
-                {loading ? (<ActivityIndicator animating={true} size='large' />
+                {loading ? (
+                    <ActivityIndicator animating={true} size='large' />
                 ) : (
                     <View style={styles.buttons}>
+                        
                         <Button style={styles.button} onPress={signIn} mode='contained-tonal'>Login</Button>
                         <Button style={styles.button} onPress={signUp} mode='elevated'>Create accout</Button>
+
                     </View>
                 )}
             </View>
+
             <Portal>
+
                 <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
                     <Dialog.Icon icon="alert" />
                     <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
@@ -98,7 +101,9 @@ export default function LoginScreen() {
                         <Button onPress={hideDialog}>Done</Button>
                     </Dialog.Actions>
                 </Dialog>
+
             </Portal>
+
         </SafeAreaView >
 
     )
