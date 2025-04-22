@@ -1,3 +1,7 @@
+/*
+Font docs: 
+*/
+
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,10 +14,24 @@ import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 import { FavoritesProvider } from './context/FavoritesContext';
 import { useMaterial3Theme } from '@pchmn/expo-material3-theme';
+import { useFonts, Roboto_400Regular, Roboto_700Bold, Roboto_200Thin_Italic } from '@expo-google-fonts/roboto';
+import * as SplashScreen from 'expo-splash-screen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  /* fonts */
+  const [loaded, error] = useFonts({
+    Roboto_200Thin_Italic,
+  });
+
+  useEffect(() => {
+    if(loaded || error){
+      SplashScreen.hideAsync();
+    }
+  })
+
 
   const [user, setUser] = useState(null);
 

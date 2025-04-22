@@ -4,7 +4,7 @@
 */
 
 import React, { useState } from 'react'
-import { StyleSheet, View, ScrollView } from 'react-native'
+import { StyleSheet, View, ScrollView, ImageBackground } from 'react-native'
 import { Text, Surface, ActivityIndicator } from 'react-native-paper'
 import YoutubePlayer from "react-native-youtube-iframe";
 import RecipeIngredients from '../components/recipe/RecipeIngredients';
@@ -18,6 +18,9 @@ export default function RecipesScreen({ route }) {
   const [loading, setLoading] = useState(true);
 
   return (
+    <ImageBackground
+    source={ require('../assets/recipe.jpg')}
+    >
     <ScrollView>
 
       <View style={styles.recipe}>
@@ -59,6 +62,7 @@ export default function RecipesScreen({ route }) {
 
       </View>
     </ScrollView>
+    </ImageBackground>
   )
 }
 
@@ -69,8 +73,8 @@ const styles = StyleSheet.create({
   },
   favorite: {
     position: 'absolute',
-    bottom: 30,
-    right: 10,
+    bottom: 5,
+    right: 5,
   },
   surface: {
     marginTop: 20,

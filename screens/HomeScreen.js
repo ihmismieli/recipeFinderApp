@@ -21,7 +21,7 @@ export default function HomeScreen() {
 
   return (
 
-    <SafeAreaView styles={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.text}>
           <Text variant="headlineSmall">Hi Gourmie!</Text>
@@ -37,15 +37,14 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EADDD7',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5,
   },
-  scrollView: {
-    width: '100%',
-    height: '100%'
-  }, 
+  // scrollView: {
+  //   width: '100%',
+  //   height: '100%'
+  // }, 
   text: {
     paddingLeft:20,
     paddingRight: 20,

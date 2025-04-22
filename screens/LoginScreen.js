@@ -63,7 +63,7 @@ export default function LoginScreen() {
                 style={styles.image}
             >
             <Text variant='displayLarge' style={styles.title}>DELISH</Text>
-            <Text variant='displayMedium' style={styles.title}>dishes</Text>
+            <Text variant='displayMedium' style={styles.title}>DISH</Text>
             <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
             <View style={styles.inputView}>
                 <TextInput
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         color: "#fff",
+        fontFamily: 'Roboto_100Thin_Italic'
     },
 
 });
