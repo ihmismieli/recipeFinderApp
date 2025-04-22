@@ -3,7 +3,7 @@
 
 
 import React, { useState } from 'react'
-import { View, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert, ImageBackground, Image } from 'react-native'
 import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button, Snackbar } from 'react-native-paper'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -29,7 +29,6 @@ export default function LoginScreen() {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log(user);
-            Alert.alert('Successfully logged in!');
         } catch (error) {
             console.log(error);
             setDialogTitle('Ohh no!')
@@ -58,8 +57,14 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text variant='displayLarge'>Delli Recipes </Text>
-            <Text variant='headlineLarge'>Login</Text>
+            <ImageBackground
+                source={ require('../assets/basilTomatoes.jpg')}
+                resizeMode="cover" 
+                style={styles.image}
+            >
+            <Text variant='displayLarge' style={styles.title}>DELISH</Text>
+            <Text variant='displayMedium' style={styles.title}>dishes</Text>
+            <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.input}
@@ -103,7 +108,7 @@ export default function LoginScreen() {
                 </Dialog>
 
             </Portal>
-
+            </ImageBackground>
         </SafeAreaView >
 
     )
@@ -119,10 +124,16 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        justifyContent: 'center',
-        alignItems: 'center'
     },
+    fork: {
+        width: 80,
+        height: 80,
+    },
+    image: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center', 
+      },
     input: {
         marginVertical: 6,
         height: 50,
@@ -132,9 +143,15 @@ const styles = StyleSheet.create({
         width: '80%',
         marginTop: 20,
     },
+    text: {
+        padding: 20,
+        textAlign: 'center',
+        color: '#fff'
+    },
     title: {
         textAlign: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        color: "#fff",
     },
 
 });

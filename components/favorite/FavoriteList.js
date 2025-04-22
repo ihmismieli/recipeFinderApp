@@ -16,7 +16,7 @@ export default function FavoriteList({ }) {
 
     return (
         <View style={styles.container}>
-
+            
             <FlatList
                 data={favorites}
                 scrollEnabled={false}

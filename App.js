@@ -9,6 +9,7 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 import { FavoritesProvider } from './context/FavoritesContext';
+import { useMaterial3Theme } from '@pchmn/expo-material3-theme';
 
 const Stack = createNativeStackNavigator();
 
