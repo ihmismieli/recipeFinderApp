@@ -24,7 +24,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.text}>
-          <Text variant="headlineSmall">Hi Gourmie!</Text>
+          <Text variant="headlineSmall" style={styles.hi}>Hi Gourmie!</Text>
           <DialogShake />
         </View>
         <Categories handleCategoryPress={handleCategoryPress} />
@@ -41,16 +41,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // scrollView: {
-  //   width: '100%',
-  //   height: '100%'
-  // }, 
+hi:{
+  fontFamily: 'Roboto_400Regular',
+},
   text: {
     paddingLeft:20,
     paddingRight: 20,
     marginTop:20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 });

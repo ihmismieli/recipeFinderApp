@@ -20,7 +20,7 @@ export default function FavoriteIconButton({ recipe, style }) {
     return (
         <IconButton
             icon={isFavorite(recipe.idMeal) ?"heart" : "heart-outline"}
-            iconColor={isFavorite(recipe.idMeal) ? "red" : undefined}
+            iconColor={isFavorite(recipe.idMeal) ? "#F9ADA0" : "#F9ADA0"}
             onPress={handleFavoritePress}
             style={style}
         />

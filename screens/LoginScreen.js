@@ -58,56 +58,71 @@ export default function LoginScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground
-                source={ require('../assets/basilTomatoes.jpg')}
-                resizeMode="cover" 
+                source={require('../assets/basilTomatoes.jpg')}
+                resizeMode="cover"
                 style={styles.image}
             >
-            <Text variant='displayLarge' style={styles.title}>DELISH</Text>
-            <Text variant='displayMedium' style={styles.title}>DISH</Text>
-            <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Email'
-                    autoCapitalize='none'
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Password'
-                    autoCapitalize='none'
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                    secureTextEntry
-                    right={<TextInput.Icon icon="eye" />}
-                />
-                {loading ? (
-                    <ActivityIndicator animating={true} size='large' />
-                ) : (
-                    <View style={styles.buttons}>
-                        
-                        <Button style={styles.button} onPress={signIn} mode='contained-tonal'>Login</Button>
-                        <Button style={styles.button} onPress={signUp} mode='elevated'>Create accout</Button>
+                <Text variant='displayLarge' style={styles.title}>DELISH</Text>
+                <Text variant='displayMedium' style={styles.title}>DISH</Text>
+                <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Email'
+                        autoCapitalize='none'
+                        value={email}
+                        onChangeText={(text) => setEmail(text)}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Password'
+                        autoCapitalize='none'
+                        value={password}
+                        onChangeText={(text) => setPassword(text)}
+                        secureTextEntry
+                        right={<TextInput.Icon icon="eye" />}
+                    />
+                    {loading ? (
+                        <ActivityIndicator animating={true} size='large' />
+                    ) : (
+                        <View style={styles.buttons}>
 
-                    </View>
-                )}
-            </View>
+                            <Button
+                                style={styles.button}
+                                onPress={signIn}
+                                mode='contained-tonal'
+                                buttonColor='#83B692'
+                            >
+                                Login
+                            </Button>
 
-            <Portal>
+                            <Button
+                                style={styles.button}
+                                onPress={signUp}
+                                mode='elevated'
+                                buttonColor='#ECE2E0'
+                            >
+                                Create accout
+                            </Button>
 
-                <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
-                    <Dialog.Icon icon="alert" />
-                    <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
-                    <Dialog.Content>
-                        <Text variant="bodyMedium">{dialogText}</Text>
-                    </Dialog.Content>
-                    <Dialog.Actions >
-                        <Button onPress={hideDialog}>Done</Button>
-                    </Dialog.Actions>
-                </Dialog>
+                        </View>
+                    )}
+                </View>
 
-            </Portal>
+                <Portal>
+
+                    <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
+                        <Dialog.Icon icon="alert" />
+                        <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
+                        <Dialog.Content>
+                            <Text variant="bodyMedium">{dialogText}</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions >
+                            <Button onPress={hideDialog}>Done</Button>
+                        </Dialog.Actions>
+                    </Dialog>
+
+                </Portal>
             </ImageBackground>
         </SafeAreaView >
 
@@ -132,13 +147,12 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center', 
-      },
+        alignItems: 'center',
+    },
     input: {
         marginVertical: 6,
         height: 50,
-        borderRadius: 10,
-        backgroundColor: '#fff',
+        backgroundColor: '#F9F1F1',
     },
     inputView: {
         width: '80%',
@@ -148,7 +162,7 @@ const styles = StyleSheet.create({
         padding: 20,
         textAlign: 'center',
         color: '#fff',
-        fontSize: 14,
+        fontSize: 15,
         fontFamily: 'Roboto_300Light'
     },
     title: {

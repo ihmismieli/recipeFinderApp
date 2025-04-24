@@ -27,6 +27,7 @@ export default function ListMeals({ foundMeals }) {
                 >
                     <Card.Title
                         title={item.strMeal}
+                        titleStyle={styles.cardTitle}
                         right={() => <FavoriteIconButton recipe={item} />}
                     />
                     <Card.Cover source={{ uri: item.strMealThumb }} />
@@ -43,5 +44,9 @@ const styles = StyleSheet.create({
     },
     cards: {
         marginVertical: 20,
+    },
+    cardTitle: {
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 20,
     }
 })

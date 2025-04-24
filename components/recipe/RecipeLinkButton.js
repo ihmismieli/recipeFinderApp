@@ -8,6 +8,7 @@ export default function RecipeLinkButton({ url }) {
             style={styles.button}
             mode='elevated'
             onPress={() => openURL(url)}
+            labelStyle={styles.label}
         >
             Original Recipe
         </Button>
@@ -17,5 +18,10 @@ export default function RecipeLinkButton({ url }) {
 const styles = StyleSheet.create({
     button: {
         marginBottom: 20,
+    }, 
+    label: {
+        fontFamily: 'Roboto_700Bold', 
+        color: 'black',
+        fontSize: 16,
     }
 });

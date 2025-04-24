@@ -5,7 +5,7 @@ export default function RecipeInstructions({ instructions }) {
     return (
         <Card style={styles.card}>
             <Card.Content>
-                <Text variant='bodyMedium'>{instructions}</Text>
+                <Text variant='bodyLarge'>{instructions}</Text>
             </Card.Content>
         </Card>
     )

@@ -15,11 +15,12 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 import { FavoritesProvider } from './context/FavoritesContext';
-import { theme } from './theme'; 
 // import { DefaultTheme} from 'react-native-paper';
+import { theme } from './theme';
 import { Roboto_400Regular, Roboto_700Bold, Roboto_300Light, Roboto_200ExtraLight } from '@expo-google-fonts/roboto';
 import { useFonts } from 'expo-font'; 
 import { useMemo } from 'react';
+
 
 
 
@@ -40,15 +41,6 @@ export default function App() {
     Roboto_300Light,
     Roboto_200ExtraLight,
   });
-
-  
-  // if (!fontsLoaded) {
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text>Fonts are loading...</Text>
-  //     </View>
-  //   );
-  // }
 
 
   useEffect(() => {

@@ -30,7 +30,7 @@ export default function RecipeIngredients( { meal }) {
                       onPress={() => checked(i)}
                     />
 
-                    <Text>
+                    <Text variant='bodyMedium'>
                       {measure} {ingredient}
                     </Text>
 

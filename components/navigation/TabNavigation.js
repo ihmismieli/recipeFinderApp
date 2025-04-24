@@ -11,6 +11,7 @@ import { CommonActions } from '@react-navigation/native';
 import HomeScreen from '../../screens/HomeScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
 import FavoritesScreen from '../../screens/FavoritesScreen';
+import { theme } from '../../theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,7 @@ export default function TabNavigation() {
                 <BottomNavigation.Bar
                     navigationState={state}
                     safeAreaInsets={insets}
+                    theme={theme}
                     onTabPress={({ route }) => {
                         navigation.dispatch({
                             ...CommonActions.navigate(route.name, route.params),
@@ -43,6 +45,7 @@ export default function TabNavigation() {
                         const { options } = descriptors[route.key];
                         return options.tabBarLabel;
                     }}
+                    
                 />
             )}
         >

@@ -29,6 +29,7 @@ export default function FavoriteList({ }) {
 
                         <Card.Title
                             title={item.strMeal}
+                            titleStyle={styles.cardTitle}
                             right={() => <FavoriteIconButton recipe={item} />}
                         />
 
@@ -50,5 +51,9 @@ const styles = StyleSheet.create({
     }, 
     container: {
         padding:10,
+    },
+    cardTitle: {
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 20,
     }
 })

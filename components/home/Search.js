@@ -66,6 +66,7 @@ export default function Search({category}) {
 const styles = StyleSheet.create({
     search: {
         width: '90%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontFamily: 'Roboto_300Light',
     }
 })
