@@ -16,6 +16,11 @@ import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 import { FavoritesProvider } from './context/FavoritesContext';
 import { theme } from './theme'; 
+// import { DefaultTheme} from 'react-native-paper';
+import { Roboto_400Regular, Roboto_700Bold, Roboto_300Light, Roboto_200ExtraLight } from '@expo-google-fonts/roboto';
+import { useFonts } from 'expo-font'; 
+import { useMemo } from 'react';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +28,36 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const appContext = useMemo(() =>{
+    return {isDarkTheme, setIsDarkTheme};
+  })
+
+  const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_700Bold,
+    Roboto_300Light,
+    Roboto_200ExtraLight,
+  });
+
+  
+  // if (!fontsLoaded) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text>Fonts are loading...</Text>
+  //     </View>
+  //   );
+  // }
+
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      console.log('Fonts are loaded');
+    } else {
+      console.log('Fonts are still loading...');
+    }
+  }, [fontsLoaded]);
 
   // Set the currently authenticated firebase user
   const [user, setUser] = useState(null);
@@ -40,9 +75,9 @@ export default function App() {
 
 
   return (
-
+    <PaperProvider theme={theme}>
     <FavoritesProvider>
-      <PaperProvider theme={theme}>
+    
         <NavigationContainer>
           <Stack.Navigator>
             {user ? (
@@ -55,8 +90,9 @@ export default function App() {
             )}
           </Stack.Navigator>
         </NavigationContainer>
-      </PaperProvider>
+     
     </FavoritesProvider>
+    </PaperProvider>
   );
 }
 
@@ -68,3 +104,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+// const theme = {
+//     ...DefaultTheme,
+//     fonts: {
+//       ...DefaultTheme.fonts,
+//       regular: { fontFamily: 'Roboto_400Regular' },
+//       medium: { fontFamily: 'Roboto_400Regular' },
+//       bold: { fontFamily: 'Roboto_700Bold' },
+//       light: { fontFamily: 'Roboto_300Light' },
+//       extra: { fontFamily: 'Roboto_200ExtraLight' },
+//     },
+//     colors: {
+//       background: '#fff'
+//     },
+//     typography: {
+//         headlineSmall: {
+//           fontFamily: 'Roboto_400Regular', 
+//           fontSize: 0,
+//           fontWeight: '400',
+//         },
+//     }
+//   };

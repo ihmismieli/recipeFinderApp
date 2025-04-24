@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
         marginVertical: 6,
         height: 50,
         borderRadius: 10,
+        backgroundColor: '#fff',
     },
     inputView: {
         width: '80%',
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         color: "#fff",
-        fontFamily: 'thin'
+        fontFamily: 'Roboto_300Light'
     },
 
 });
