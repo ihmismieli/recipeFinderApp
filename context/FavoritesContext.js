@@ -8,16 +8,28 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { FIREBASE_DB } from '../FirebaseConfig';
+import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { ref, set, remove, get } from 'firebase/database'
+import { onAuthStateChanged } from 'firebase/auth'
 
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
+    
     const [favorites, setFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [userId, setUserId] = useState(null);
 
-    const auth = getAuth();
-    const userId = auth.currentUser?.uid;
+    useEffect(() => {
+        onAuthStateChanged(FIREBASE_AUTH, (user) => {
+            if (user) {
+              setUserId(user.uid);
+            } else {
+              setUserId(null);
+              setFavorites([]); 
+            }
+          });
+    }, []);
 
     useEffect(() => {
         if (userId) {

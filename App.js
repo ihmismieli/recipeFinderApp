@@ -14,7 +14,7 @@ import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 import { FavoritesProvider } from './context/FavoritesContext';
 import { useMaterial3Theme } from '@pchmn/expo-material3-theme';
-import { useFonts, Roboto_400Regular, Roboto_700Bold, Roboto_200Thin_Italic } from '@expo-google-fonts/roboto';
+import { useFonts, Roboto_400Regular, Roboto_700Bold, Roboto_200Thin_Italic, Roboto_300Light } from '@expo-google-fonts/roboto';
 import * as SplashScreen from 'expo-splash-screen';
 
 const Stack = createNativeStackNavigator();
@@ -32,15 +32,21 @@ export default function App() {
     }
   })
 
+  /*fonts end */
 
+  /* Set the currently authenticated firebase*/
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
-      console.log('user', user);
-      setUser(user);
-    }, []);
-  })
+   onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      if(user){
+        console.log('user', user);
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    })
+  }, []);
 
 
   return (

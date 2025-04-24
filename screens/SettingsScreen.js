@@ -3,10 +3,11 @@ import { Text, IconButton, Button } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { signOut, getAuth } from 'firebase/auth'
 import { StyleSheet, ImageBackground } from 'react-native'
+import { FIREBASE_AUTH } from '../FirebaseConfig'
 
 export default function SettingsScreen() {
 
-    const auth = getAuth();
+    const auth = FIREBASE_AUTH
 
     const handleSignOut = async () => {
         try {

@@ -146,7 +146,9 @@ const styles = StyleSheet.create({
     text: {
         padding: 20,
         textAlign: 'center',
-        color: '#fff'
+        color: '#fff',
+        fontSize: 14,
+        fontFamily: 'Roboto_300Light'
     },
     title: {
         textAlign: 'center',
