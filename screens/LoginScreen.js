@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         color: "#fff",
-        fontFamily: 'Roboto_100Thin_Italic'
+        fontFamily: 'thin'
     },
 
 });

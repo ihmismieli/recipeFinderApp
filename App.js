@@ -1,5 +1,7 @@
 /*
-Font docs: 
+Docs: 
+https://docs.expo.dev/develop/user-interface/fonts/
+https://docs.expo.dev/versions/latest/sdk/splash-screen/
 */
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -13,28 +15,16 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 import TabNavigation from './components/navigation/TabNavigation';
 import RecipeScreen from './screens/RecipeScreen';
 import { FavoritesProvider } from './context/FavoritesContext';
-import { useMaterial3Theme } from '@pchmn/expo-material3-theme';
-import { useFonts, Roboto_400Regular, Roboto_700Bold, Roboto_200Thin_Italic, Roboto_300Light } from '@expo-google-fonts/roboto';
-import * as SplashScreen from 'expo-splash-screen';
+import { theme } from './theme'; 
+
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
 
-  /* fonts */
-  const [loaded, error] = useFonts({
-    Roboto_200Thin_Italic,
-  });
 
-  useEffect(() => {
-    if(loaded || error){
-      SplashScreen.hideAsync();
-    }
-  })
-
-  /*fonts end */
-
-  /* Set the currently authenticated firebase*/
+  // Set the currently authenticated firebase user
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -52,7 +42,7 @@ export default function App() {
   return (
 
     <FavoritesProvider>
-      <PaperProvider>
+      <PaperProvider theme={theme}>
         <NavigationContainer>
           <Stack.Navigator>
             {user ? (
