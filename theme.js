@@ -8,13 +8,26 @@ export const theme = {
     colors: {
       ...DefaultTheme.colors,
 
-      primary: '#fff',       
+      primary: '#fff',       //effects tab
       onPrimary: 'black',  
       primaryContainer: '#fff',    
       secondary: '#00897B',
       background: '#EADDD7',
       // background: '#A7CAB1',
-      surface: '#fff',
+      surface: '#fff', 
+      // onSurface: 'black',
+      secondaryContainer: "rgb(242, 233, 239)", //SegmentedButtons
+      // surfaceVariant: "rgb(222, 227, 235)",
+      onSurfaceVariant: "black", //effects tab text
+      elevation: {
+      "level0": "transparent",
+      "level1": "rgb(248, 242, 251)",
+      "level2": "rgb(242, 233, 239)", //tab bar color
+      "level3": "rgb(240, 231, 246)",
+      "level4": "rgb(239, 229, 245)",
+      "level5": "rgb(236, 226, 243)"
+    },
+    
     },
 
     fonts: {

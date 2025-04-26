@@ -1,12 +1,14 @@
 /* Shows a list of user's favorites on the FavoritesScreeen (Faves tab) */
 
-import { ActivityIndicator, Card } from 'react-native-paper';
+import { ActivityIndicator, Card, useTheme } from 'react-native-paper';
 import FavoriteIconButton from './FavoriteIconButton';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useFavorites } from '../../context/FavoritesContext';
 import { useNavigation } from '@react-navigation/native';
 
 export default function FavoriteList({ }) {
+
+    const theme = useTheme()
 
     const { favorites, loading } = useFavorites();
     const navigation = useNavigation();
@@ -23,7 +25,7 @@ export default function FavoriteList({ }) {
                 renderItem={({ item }) => (
 
                     <Card
-                        style={styles.cards}
+                    style={[styles.cards, { backgroundColor: theme.colors.surface }]}
                         onPress={() => navigation.navigate('Recipe', { meal: item })}
                     >
 

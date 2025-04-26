@@ -3,13 +3,14 @@
 
 
 import React, { useState } from 'react'
-import { View, StyleSheet, Alert, ImageBackground, Image } from 'react-native'
-import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button, Snackbar } from 'react-native-paper'
+import { View, StyleSheet, Alert, ImageBackground, StatusBar, ScrollView } from 'react-native'
+import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button, useTheme } from 'react-native-paper'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function LoginScreen() {
+
+    const theme = useTheme();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,13 +21,11 @@ export default function LoginScreen() {
 
     const hideDialog = () => setVisible(false);
 
-    const auth = FIREBASE_AUTH;
-
     //signing in to the application
     const signIn = async () => {
         setLoading(true);
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
             const user = userCredential.user;
             console.log(user);
         } catch (error) {
@@ -43,7 +42,7 @@ export default function LoginScreen() {
     const signUp = async () => {
         setLoading(true);
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password);
             const user = userCredential.user;
             console.log(user);
             Alert.alert('Account created succesfully!!')
@@ -56,76 +55,116 @@ export default function LoginScreen() {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <ImageBackground
-                source={require('../assets/basilTomatoes.jpg')}
-                resizeMode="cover"
-                style={styles.image}
-            >
-                <Text variant='displayLarge' style={styles.title}>DELISH</Text>
-                <Text variant='displayMedium' style={styles.title}>DISH</Text>
-                <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Email'
-                        autoCapitalize='none'
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Password'
-                        autoCapitalize='none'
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                        secureTextEntry
-                        right={<TextInput.Icon icon="eye" />}
-                    />
-                    {loading ? (
-                        <ActivityIndicator animating={true} size='large' />
-                    ) : (
-                        <View style={styles.buttons}>
 
-                            <Button
-                                style={styles.button}
-                                onPress={signIn}
-                                mode='contained-tonal'
-                                buttonColor='#83B692'
-                            >
-                                Login
-                            </Button>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-                            <Button
-                                style={styles.button}
-                                onPress={signUp}
-                                mode='elevated'
-                                buttonColor='#ECE2E0'
-                                labelStyle={{ color: 'black' }}
-                            >
-                                Create accout
-                            </Button>
+            <StatusBar
+                translucent
+                backgroundColor="transparent"
+                barStyle="light-content"
+            />
 
-                        </View>
-                    )}
-                </View>
+            <View style={styles.container}>
 
-                <Portal>
 
-                    <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
-                        <Dialog.Icon icon="alert" />
-                        <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
-                        <Dialog.Content>
-                            <Text variant="bodyMedium">{dialogText}</Text>
-                        </Dialog.Content>
-                        <Dialog.Actions >
-                            <Button onPress={hideDialog}>Done</Button>
-                        </Dialog.Actions>
-                    </Dialog>
+                <ImageBackground
+                    source={require('../assets/basilTomatoes.jpg')}
+                    resizeMode="cover"
+                    style={styles.image}
+                >
 
-                </Portal>
-            </ImageBackground>
-        </SafeAreaView >
+                    <View style={styles.titleContainer}>
+                        <Text 
+                        variant='displayLarge' 
+                        style={[styles.title, {color: theme.colors.primary}]}
+                        >
+                            DELISH
+                            </Text>
+                        <Text 
+                        variant='displayMedium' 
+                        style={[styles.title, {color: theme.colors.primary}]}
+                        >
+                            DISH
+                            </Text>
+                    </View>
+
+                    <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Email'
+                            autoCapitalize='none'
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Password'
+                            autoCapitalize='none'
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                            secureTextEntry
+                            right={<TextInput.Icon icon="eye" />}
+                        />
+                        {loading ? (
+                            <ActivityIndicator animating={true} size='large' />
+                        ) : (
+                            <View style={styles.buttons}>
+
+                                <Button
+                                    style={styles.button}
+                                    onPress={signIn}
+                                    mode='contained-tonal'
+                                    buttonColor='#83B692'
+                                >
+                                    Login
+                                </Button>
+
+                                <Button
+                                    style={styles.button}
+                                    onPress={signUp}
+                                    mode='elevated'
+                                    buttonColor='#ECE2E0'
+                                    labelStyle={{ color: 'black' }}
+                                >
+                                    Create account
+                                </Button>
+
+                            </View>
+                        )}
+
+                    </View>
+
+                    <Portal>
+
+                        <Dialog 
+                        visible={visible} 
+                        onDismiss={hideDialog} 
+                        style={styles.dialog}
+                        >
+                            <Dialog.Icon 
+                            icon="alert"
+                            color={theme.colors.onPrimary}
+                             />
+                            <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
+                            <Dialog.Content>
+                                <Text style={[styles.text, {color: theme.colors.onPrimary}]} variant="bodyMedium">{dialogText}</Text>
+                            </Dialog.Content>
+                            <Dialog.Actions >
+                                <Button 
+                                onPress={hideDialog}
+                                textColor= {theme.colors.onPrimary}
+                                >
+                                    Done
+                                    </Button>
+                            </Dialog.Actions>
+                        </Dialog>
+
+                    </Portal>
+
+                </ImageBackground>
+            </View >
+        </ScrollView>
 
     )
 }
@@ -141,14 +180,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    fork: {
-        width: 80,
-        height: 80,
-    },
     image: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%',
+        height: '100%'
     },
     input: {
         marginVertical: 6,
@@ -169,8 +206,12 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         alignItems: 'center',
-        color: "#fff",
+        // color: "#fff",
         fontFamily: 'Roboto_300Light'
     },
+    titleContainer: {
+        marginTop: 50,
+    },
+    
 
 });

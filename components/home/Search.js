@@ -29,7 +29,7 @@ export default function Search({category}) {
             // console.log("DATA:", data.meals);
             setFoundMeals(data.meals);
             setShowMeals(true);
-            // setSearchQuery("");
+            setSearchQuery("");
             Keyboard.dismiss();
         } catch (error) {
             console.error("Error in fetching meals: ", error)

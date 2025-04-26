@@ -27,7 +27,6 @@ export default function TabNavigation() {
 
             tabBar={({ navigation, state, descriptors, insets }) => (
                 <BottomNavigation.Bar
-                    barStyle={{ backgroundColor: theme.colors.primary }}
                     navigationState={state}
                     safeAreaInsets={insets}
                     onTabPress={({ route }) => {
@@ -47,6 +46,10 @@ export default function TabNavigation() {
                     getLabelText={({ route }) => {
                         const { options } = descriptors[route.key];
                         return options.tabBarLabel;
+                    }}
+
+                    activeIndicatorStyle={{
+                        backgroundColor: theme.colors.primary, 
                     }}
 
                 />
