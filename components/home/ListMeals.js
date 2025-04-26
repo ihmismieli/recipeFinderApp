@@ -22,17 +22,21 @@ export default function ListMeals({ foundMeals }) {
             scrollEnabled={false}
             data={foundMeals}
             renderItem={({ item }) =>
+
                 <Card
                     mode='elevated'
                     style={[styles.cards, { backgroundColor: theme.colors.surface }]}
                     onPress={() => navigation.navigate('Recipe', { meal: item })}
                 >
+
                     <Card.Title
                         title={item.strMeal}
                         titleStyle={styles.cardTitle}
                         right={() => <FavoriteIconButton recipe={item} />}
                     />
+
                     <Card.Cover source={{ uri: item.strMealThumb }} />
+                    
                 </Card>
             }
         />

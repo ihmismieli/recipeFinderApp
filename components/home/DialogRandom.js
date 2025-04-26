@@ -4,20 +4,19 @@ import { View, StyleSheet } from 'react-native';
 import { getRandomMeal } from '../../Api';
 import { useNavigation } from '@react-navigation/native';
 
-export default function DialogShake() {
+export default function DialogRandom() {
 
   const theme = useTheme();
+  const navigation = useNavigation();
 
   const [visible, setVisible] = useState(false);
 
   const showDialog = () => setVisible(true);
-
   const hideDialog = () => setVisible(false);
-
-  const navigation = useNavigation();
 
   const searchRandomMeal = async () => {
     hideDialog();
+
     try {
 
       const data = await getRandomMeal();
@@ -52,18 +51,18 @@ export default function DialogShake() {
             <Text variant="bodyMedium">Press OK or shake your phone for a random recipe!</Text>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button 
-            onPress={hideDialog}
-            labelStyle={{ color: theme.colors.onPrimary }} 
+            <Button
+              onPress={hideDialog}
+              labelStyle={{ color: theme.colors.onPrimary }}
             >
               Cancel
-              </Button>
+            </Button>
             <Button
-             onPress={searchRandomMeal}
-             labelStyle={{ color: theme.colors.onPrimary }} 
-             >
+              onPress={searchRandomMeal}
+              labelStyle={{ color: theme.colors.onPrimary }}
+            >
               OK
-              </Button>
+            </Button>
           </Dialog.Actions>
 
         </Dialog>

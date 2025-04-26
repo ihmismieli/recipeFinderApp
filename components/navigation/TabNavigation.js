@@ -26,6 +26,7 @@ export default function TabNavigation() {
             }}
 
             tabBar={({ navigation, state, descriptors, insets }) => (
+
                 <BottomNavigation.Bar
                     navigationState={state}
                     safeAreaInsets={insets}
@@ -35,6 +36,7 @@ export default function TabNavigation() {
                             target: state.key,
                         });
                     }}
+
                     renderIcon={({ route, focused }) => {
                         const { options } = descriptors[route.key];
                         if (options.tabBarIcon) {
@@ -43,13 +45,14 @@ export default function TabNavigation() {
 
                         return null;
                     }}
+
                     getLabelText={({ route }) => {
                         const { options } = descriptors[route.key];
                         return options.tabBarLabel;
                     }}
 
                     activeIndicatorStyle={{
-                        backgroundColor: theme.colors.primary, 
+                        backgroundColor: theme.colors.primary,
                     }}
 
                 />

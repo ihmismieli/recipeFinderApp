@@ -1,10 +1,9 @@
-import React from 'react'
-import { Text, IconButton, Button, useTheme } from 'react-native-paper'
+import { Button, useTheme } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { signOut} from 'firebase/auth'
-import { StyleSheet, ImageBackground } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { FIREBASE_AUTH } from '../FirebaseConfig'
-import ThemeSettings from '../components/settings/ThemeSettings'
+import ThemeSettings from '../components/theme/ThemeSettings'
 
 export default function SettingsScreen() {
 
@@ -20,10 +19,6 @@ export default function SettingsScreen() {
     }
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-            {/* <ImageBackground
-                source={require('../assets/favorites.jpg')}
-                style={styles.image}
-            > */}
             <ThemeSettings />
             <Button
                 mode='contained-tonal'
@@ -34,7 +29,6 @@ export default function SettingsScreen() {
             >
                 Sign out
             </Button>
-            {/* </ImageBackground> */}
         </SafeAreaView>
     )
 }
@@ -43,12 +37,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    image: {
-        flex: 1,
-    },
     signOut: {
         margin: 20,
-
     }
 })
 

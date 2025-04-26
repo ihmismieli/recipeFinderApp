@@ -1,4 +1,4 @@
-/* Category buttons on the HomeScreen */
+/* Category buttons on the HomeScreen (Recipes tab)*/
 
 import { StyleSheet, View } from 'react-native';
 import { Text, Avatar, Card } from 'react-native-paper';
@@ -6,7 +6,7 @@ import { Text, Avatar, Card } from 'react-native-paper';
 export default function Categories({ handleCategoryPress }) {
 
     return (
-        <View>
+  
             <View style={styles.categories}>
                 
                 <Card
@@ -49,7 +49,7 @@ export default function Categories({ handleCategoryPress }) {
                 </Card>
 
             </View>
-        </View>
+   
 
     )
 }

@@ -2,7 +2,7 @@
 // Auth docs: https://firebase.google.com/docs/auth/web/password-auth#web_4
 
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { View, StyleSheet, Alert, ImageBackground, StatusBar, ScrollView } from 'react-native'
 import { ActivityIndicator, Text, TextInput, Portal, Dialog, Button, useTheme } from 'react-native-paper'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
@@ -66,7 +66,6 @@ export default function LoginScreen() {
 
             <View style={styles.container}>
 
-
                 <ImageBackground
                     source={require('../assets/basilTomatoes.jpg')}
                     resizeMode="cover"
@@ -74,22 +73,24 @@ export default function LoginScreen() {
                 >
 
                     <View style={styles.titleContainer}>
-                        <Text 
-                        variant='displayLarge' 
-                        style={[styles.title, {color: theme.colors.primary}]}
+                        <Text
+                            variant='displayLarge'
+                            style={[styles.title, { color: theme.colors.primary }]}
                         >
                             DELISH
-                            </Text>
-                        <Text 
-                        variant='displayMedium' 
-                        style={[styles.title, {color: theme.colors.primary}]}
+                        </Text>
+                        <Text
+                            variant='displayMedium'
+                            style={[styles.title, { color: theme.colors.primary }]}
                         >
                             DISH
-                            </Text>
+                        </Text>
                     </View>
 
                     <Text variant='labelLarge' style={styles.text}>Login or Create account to enter the world of yummy recipes!</Text>
+                    
                     <View style={styles.inputView}>
+
                         <TextInput
                             style={styles.input}
                             placeholder='Email'
@@ -106,6 +107,7 @@ export default function LoginScreen() {
                             secureTextEntry
                             right={<TextInput.Icon icon="eye" />}
                         />
+
                         {loading ? (
                             <ActivityIndicator animating={true} size='large' />
                         ) : (
@@ -137,27 +139,31 @@ export default function LoginScreen() {
 
                     <Portal>
 
-                        <Dialog 
-                        visible={visible} 
-                        onDismiss={hideDialog} 
-                        style={styles.dialog}
+                        <Dialog
+                            visible={visible}
+                            onDismiss={hideDialog}
+                            style={styles.dialog}
                         >
-                            <Dialog.Icon 
-                            icon="alert"
-                            color={theme.colors.onPrimary}
-                             />
+                            <Dialog.Icon
+                                icon="alert"
+                                color={theme.colors.onPrimary}
+                            />
+
                             <Dialog.Title style={styles.title}>{dialogTitle}</Dialog.Title>
+                            
                             <Dialog.Content>
-                                <Text style={[styles.text, {color: theme.colors.onPrimary}]} variant="bodyMedium">{dialogText}</Text>
+                                <Text style={[styles.text, { color: theme.colors.onPrimary }]} variant="bodyMedium">{dialogText}</Text>
                             </Dialog.Content>
+
                             <Dialog.Actions >
-                                <Button 
-                                onPress={hideDialog}
-                                textColor= {theme.colors.onPrimary}
+                                <Button
+                                    onPress={hideDialog}
+                                    textColor={theme.colors.onPrimary}
                                 >
                                     Done
-                                    </Button>
+                                </Button>
                             </Dialog.Actions>
+                            
                         </Dialog>
 
                     </Portal>
@@ -206,12 +212,11 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         alignItems: 'center',
-        // color: "#fff",
         fontFamily: 'Roboto_300Light'
     },
     titleContainer: {
         marginTop: 50,
     },
-    
+
 
 });

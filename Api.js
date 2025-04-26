@@ -20,16 +20,6 @@ export async function searchMealsByCategory(category){
     return await response.json();
 }
 
-//meal by mealId
-export async function searchMealByMealId(mealId){
-    const response = await fetch(`${mealDbUrl}lookup.php?i=${mealId}`)
-    if (!response.ok){
-        throw new Error("Error in fetching meal data by mealId: " + response.statusText);
-    }
-    return await response.json();
-}
-
-
 //single random meal
 export function getRandomMeal(){
     return fetch(`${mealDbUrl}random.php`)

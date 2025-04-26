@@ -1,6 +1,4 @@
 /* Handles the favorites of the user */
-/* Docs: https://firebase.google.com/docs/database/web/start
-*/
 
 import { IconButton } from 'react-native-paper'
 import { useFavorites } from '../../context/FavoritesContext';

@@ -4,7 +4,7 @@
 */
 
 import React, { useState } from 'react'
-import { StyleSheet, View, ScrollView, ImageBackground } from 'react-native'
+import { StyleSheet, View, ScrollView, ImageBackground, StatusBar } from 'react-native'
 import { Text, Surface, ActivityIndicator, useTheme } from 'react-native-paper'
 import YoutubePlayer from "react-native-youtube-iframe";
 import RecipeIngredients from '../components/recipe/RecipeIngredients';
@@ -19,56 +19,63 @@ export default function RecipesScreen({ route }) {
   const theme = useTheme();
 
   return (
+
     <ImageBackground
-    source={ require('../assets/recipe.jpg')}
+      source={require('../assets/recipe.jpg')}
     >
-    <ScrollView>
 
-      <View style={styles.recipe}>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
 
-        <Surface 
-        style={[
-          styles.surface,
-          { backgroundColor: theme.colors.surface }
-        ]}
-        
-        elevation={4}>
+      <ScrollView>
 
-          <Text variant='displaySmall' style={styles.textSurface}>{meal.strMeal}</Text>
-          <Text variant='bodyLarge'>{meal.strArea}</Text>
-          <FavoriteIconButton style={styles.favorite} recipe={meal} />
+        <View style={styles.recipe}>
 
-        </Surface>
+          <Surface
+            style={[
+              styles.surface,
+              { backgroundColor: theme.colors.surface }
+            ]}
+            elevation={4}
+            >
+
+            <Text variant='displaySmall' style={styles.textSurface}>{meal.strMeal}</Text>
+            <Text variant='bodyLarge'>{meal.strArea}</Text>
+            <FavoriteIconButton style={styles.favorite} recipe={meal} />
+          </Surface>
 
 
-        <View style={styles.youtubePlayer}>
+          <View style={styles.youtubePlayer}>
 
-          {loading && (
+            {loading && (
 
-            <ActivityIndicator
-              animating={true}
-              size='large'
+              <ActivityIndicator
+                animating={true}
+                size='large'
+              />
+
+            )}
+
+            <YoutubePlayer
+              height={200}
+              play={false}
+              videoId={meal.strYoutube.split('v=')[1]}
+              onReady={() => setLoading(false)}
             />
 
-          )}
+          </View>
 
-          <YoutubePlayer
-            height={200}
-            play={false}
-            videoId={meal.strYoutube.split('v=')[1]}
-            onReady={() => setLoading(false)}
-          />
+          <RecipeIngredients meal={meal} />
+
+          <RecipeInstructions instructions={meal.strInstructions} />
+
+          <RecipeLinkButton url={meal.strSource} />
 
         </View>
-
-        <RecipeIngredients meal={meal} />
-
-        <RecipeInstructions instructions={meal.strInstructions} />
-
-        <RecipeLinkButton url={meal.strSource} />
-
-      </View>
-    </ScrollView>
+      </ScrollView>
     </ImageBackground>
   )
 }

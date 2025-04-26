@@ -14,7 +14,7 @@ export default function FavoriteList({ }) {
     const navigation = useNavigation();
 
     if (loading)
-        return <ActivityIndicator></ActivityIndicator>
+        return <ActivityIndicator />
 
     return (
         <View style={styles.container}>

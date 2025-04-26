@@ -1,12 +1,13 @@
 /* FavoritesContext created with the help of:
+
     React.dev: https://react.dev/reference/react/useContext
     Firebase: https://firebase.google.com/docs/database/web/start
     Medium: https://medium.com/@idundunmd13/how-i-used-a-usecontext-hook-to-create-a-bookmark-feature-in-a-mern-application-5597750867b0
     and ChatGPT
+    
 */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getAuth } from 'firebase/auth';
 import { FIREBASE_DB } from '../FirebaseConfig';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { ref, set, remove, get } from 'firebase/database'
@@ -15,7 +16,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
-    
+
     const [favorites, setFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userId, setUserId] = useState(null);
@@ -23,12 +24,12 @@ export const FavoritesProvider = ({ children }) => {
     useEffect(() => {
         onAuthStateChanged(FIREBASE_AUTH, (user) => {
             if (user) {
-              setUserId(user.uid);
+                setUserId(user.uid);
             } else {
-              setUserId(null);
-              setFavorites([]); 
+                setUserId(null);
+                setFavorites([]);
             }
-          });
+        });
     }, []);
 
     useEffect(() => {
