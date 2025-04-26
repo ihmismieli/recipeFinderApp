@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
-import { Text } from 'react-native-paper'
+import { Text, useTheme } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Categories from '../components/home/Categories'
 import Search from '../components/home/Search'
@@ -12,7 +12,7 @@ import DialogShake from '../components/home/DialogShake'
 
 export default function HomeScreen() {
 
-
+  const theme = useTheme();
   const [category, setCategory] = useState(''); 
 
   const handleCategoryPress = (category) => {
@@ -20,8 +20,7 @@ export default function HomeScreen() {
   };
 
   return (
-
-    <SafeAreaView style={styles.container}>
+<SafeAreaView  style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.text}>
           <Text variant="headlineSmall" style={styles.hi}>Hi Gourmie!</Text>
@@ -37,7 +36,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EADDD7',
     alignItems: 'center',
     justifyContent: 'center',
   },

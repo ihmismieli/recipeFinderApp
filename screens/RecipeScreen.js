@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react'
 import { StyleSheet, View, ScrollView, ImageBackground } from 'react-native'
-import { Text, Surface, ActivityIndicator } from 'react-native-paper'
+import { Text, Surface, ActivityIndicator, useTheme } from 'react-native-paper'
 import YoutubePlayer from "react-native-youtube-iframe";
 import RecipeIngredients from '../components/recipe/RecipeIngredients';
 import RecipeInstructions from '../components/recipe/RecipeInstructions';
@@ -16,6 +16,7 @@ export default function RecipesScreen({ route }) {
 
   const { meal } = route.params;
   const [loading, setLoading] = useState(true);
+  const theme = useTheme();
 
   return (
     <ImageBackground
@@ -25,7 +26,13 @@ export default function RecipesScreen({ route }) {
 
       <View style={styles.recipe}>
 
-        <Surface style={styles.surface} elevation={4}>
+        <Surface 
+        style={[
+          styles.surface,
+          { backgroundColor: theme.colors.surface }
+        ]}
+        
+        elevation={4}>
 
           <Text variant='displaySmall' style={styles.textSurface}>{meal.strMeal}</Text>
           <Text variant='bodyLarge'>{meal.strArea}</Text>

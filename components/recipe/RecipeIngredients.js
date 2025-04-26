@@ -1,9 +1,11 @@
 import { StyleSheet} from 'react-native'
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Checkbox, Text, Card } from 'react-native-paper'
+import { Checkbox, Text, Card, useTheme } from 'react-native-paper'
 
 export default function RecipeIngredients( { meal }) {
+
+  const theme = useTheme();
 
      const [checkedIngredients, setCheckedIngredients] = useState({});
 
@@ -45,7 +47,9 @@ export default function RecipeIngredients( { meal }) {
   return (
     <View style={styles.ingredients}>
 
-    <Card>
+    <Card
+    style={{ backgroundColor: theme.colors.surface }}
+    >
       <Card.Content>
         
         <Text variant='headlineSmall' style={styles.text}>Ingredients</Text>

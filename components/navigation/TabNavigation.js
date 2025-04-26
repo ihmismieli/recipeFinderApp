@@ -1,32 +1,35 @@
 /* Tab navigation of the application */
+
 /* Docs: 
 https://callstack.github.io/react-native-paper/docs/components/BottomNavigation/BottomNavigationBar
 https://reactnavigation.org/docs/bottom-tab-navigator/
 */
 
-import { BottomNavigation } from 'react-native-paper';
+import { BottomNavigation, useTheme } from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { CommonActions } from '@react-navigation/native';
 import HomeScreen from '../../screens/HomeScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
 import FavoritesScreen from '../../screens/FavoritesScreen';
-import { theme } from '../../theme';
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
+
+    const theme = useTheme();
 
     return (
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
             }}
+
             tabBar={({ navigation, state, descriptors, insets }) => (
                 <BottomNavigation.Bar
+                    barStyle={{ backgroundColor: theme.colors.primary }}
                     navigationState={state}
                     safeAreaInsets={insets}
-                    theme={theme}
                     onTabPress={({ route }) => {
                         navigation.dispatch({
                             ...CommonActions.navigate(route.name, route.params),
@@ -45,7 +48,7 @@ export default function TabNavigation() {
                         const { options } = descriptors[route.key];
                         return options.tabBarLabel;
                     }}
-                    
+
                 />
             )}
         >

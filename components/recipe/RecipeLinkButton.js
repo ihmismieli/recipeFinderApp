@@ -1,11 +1,13 @@
 import React from 'react'
 import { StyleSheet} from 'react-native'
-import { Button } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 
 export default function RecipeLinkButton({ url }) {
+
+      const theme = useTheme();
     return (
         <Button
-            style={styles.button}
+            style={[styles.button, { backgroundColor: theme.colors.surface } ]}
             mode='elevated'
             onPress={() => openURL(url)}
             labelStyle={styles.label}

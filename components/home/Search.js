@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import { Keyboard, StyleSheet } from 'react-native';
-import { Searchbar } from 'react-native-paper'
+import { Searchbar, useTheme } from 'react-native-paper'
 import { searchMealsByName } from '../../Api';
 import ListMeals from './ListMeals';
 import { searchMealsByCategory } from '../../Api';
 
 export default function Search({category}) {
+
+     const theme = useTheme();
 
     const [searchQuery, setSearchQuery] = useState("");
     const [foundMeals, setFoundMeals] = useState([{}])
@@ -48,7 +50,7 @@ export default function Search({category}) {
     return (
         <>
             <Searchbar
-                style={styles.search}
+                style={[styles.search, { backgroundColor: theme.colors.surface } ]}
                 placeholder="Search recipes"
                 onChangeText={setSearchQuery}
                 value={searchQuery}

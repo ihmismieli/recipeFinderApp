@@ -8,6 +8,7 @@ export default function Categories({ handleCategoryPress }) {
     return (
         <View>
             <View style={styles.categories}>
+                
                 <Card
                     mode='elevated'
                     style={styles.card}

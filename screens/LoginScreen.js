@@ -101,6 +101,7 @@ export default function LoginScreen() {
                                 onPress={signUp}
                                 mode='elevated'
                                 buttonColor='#ECE2E0'
+                                labelStyle={{ color: 'black' }}
                             >
                                 Create accout
                             </Button>

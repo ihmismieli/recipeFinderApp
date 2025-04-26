@@ -1,25 +1,26 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FavoriteList from '../components/favorite/FavoriteList'
-import { ImageBackground, ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
+import { useTheme } from 'react-native-paper'
+
 
 export default function FavoriteScreen() {
+
+  const theme = useTheme();
+
   return (
-    <SafeAreaView style={styles.container}>
-     
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <ScrollView>
-        
         <FavoriteList />
-        
       </ScrollView>
     </SafeAreaView>
   )
 }
 
-
 const styles = StyleSheet.create({
   container: {
-      flex : 1,
-      backgroundColor: '#EADDD7',
+    flex: 1,
+
   }
 })
