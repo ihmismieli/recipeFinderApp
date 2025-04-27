@@ -1,11 +1,9 @@
 /* Handles the favorites of the user */
-/* Docs: https://firebase.google.com/docs/database/web/start
-*/
 
 import { IconButton } from 'react-native-paper'
 import { useFavorites } from '../../context/FavoritesContext';
 
-export default function FavoriteIconButton({ recipe }) {
+export default function FavoriteIconButton({ recipe, style }) {
 
     const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
@@ -20,8 +18,9 @@ export default function FavoriteIconButton({ recipe }) {
     return (
         <IconButton
             icon={isFavorite(recipe.idMeal) ?"heart" : "heart-outline"}
-            iconColor={isFavorite(recipe.idMeal) ? "red" : undefined}
+            iconColor={isFavorite(recipe.idMeal) ? "#F9ADA0" : "#F9ADA0"}
             onPress={handleFavoritePress}
+            style={style}
         />
     )
 }

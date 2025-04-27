@@ -8,12 +8,13 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { FlatList } from 'react-native'
-import { Card } from 'react-native-paper'
+import { Card, useTheme } from 'react-native-paper'
 import FavoriteIconButton from '../favorite/FavoriteIconButton';
 
 export default function ListMeals({ foundMeals }) {
 
     const navigation = useNavigation();
+    const theme = useTheme()
 
     return (
         <FlatList
@@ -21,15 +22,21 @@ export default function ListMeals({ foundMeals }) {
             scrollEnabled={false}
             data={foundMeals}
             renderItem={({ item }) =>
+
                 <Card
-                    style={styles.cards}
+                    mode='elevated'
+                    style={[styles.cards, { backgroundColor: theme.colors.surface }]}
                     onPress={() => navigation.navigate('Recipe', { meal: item })}
                 >
+
                     <Card.Title
                         title={item.strMeal}
+                        titleStyle={styles.cardTitle}
                         right={() => <FavoriteIconButton recipe={item} />}
                     />
+
                     <Card.Cover source={{ uri: item.strMealThumb }} />
+                    
                 </Card>
             }
         />
@@ -43,5 +50,9 @@ const styles = StyleSheet.create({
     },
     cards: {
         marginVertical: 20,
+    },
+    cardTitle: {
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 20,
     }
 })

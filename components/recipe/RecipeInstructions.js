@@ -1,11 +1,13 @@
 import { StyleSheet} from 'react-native'
-import {  Text, Card} from 'react-native-paper'
+import {  Text, Card, useTheme} from 'react-native-paper'
 
 export default function RecipeInstructions({ instructions }) {
+
+     const theme = useTheme();
     return (
-        <Card style={styles.card}>
+        <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
             <Card.Content>
-                <Text variant='bodyMedium'>{instructions}</Text>
+                <Text variant='bodyLarge'>{instructions}</Text>
             </Card.Content>
         </Card>
     )
